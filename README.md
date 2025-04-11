@@ -1,4 +1,4 @@
-# StickMash Expo Tutorial project
+# StickSMash Expo Tutorial project
 
 This is my interpretation of the expo tutorial project, the application allows users add images from their device and attach stickers to these images.
 
