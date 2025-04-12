@@ -8,6 +8,7 @@ import ImageOptions from '@/components/ImageOptions'
 import { EmojiPicker } from '@/components/EmojiPicker'
 import { ImageSource } from 'expo-image'
 import { EmojiSticker } from '@/components/EmojiSticker'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const placeholderImage = require('@/assets/images/background-image.png')
 
@@ -54,8 +55,8 @@ export default function Index() {
     ? { uri: selectedImage }
     : placeholderImage
   return (
-    <View className="bg-[#25292e] flex-1 items-center">
-      <View className="flex-1 pt-5">
+    <GestureHandlerRootView style={styles.container}>
+      <View style={styles.imageWrapper}>
         <ImageViewer source={imageToDisplay} />
         {selectedEmoji && (
           <EmojiSticker source={selectedEmoji} imageSize={40} />
@@ -68,7 +69,7 @@ export default function Index() {
           onAddSticker={onAddSticker}
         />
       ) : (
-        <View className="items-center gap-2 mb-5">
+        <View style={styles.buttonWrapper}>
           <Button style={styles.chooseButton} onPress={pickImageAsync}>
             <>
               <FontAwesome
@@ -92,11 +93,21 @@ export default function Index() {
         title="Choose a sticker"
         onSelect={onSelectEmoji}
       ></EmojiPicker>
-    </View>
+    </GestureHandlerRootView>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#25292e',
+    flex: 1,
+    alignItems: 'center',
+  },
+  imageWrapper: {
+    flex: 1,
+    paddingTop: 10,
+  },
+  buttonWrapper: { alignItems: 'center', gap: 8, marginBottom: 20 },
   chooseButton: {
     backgroundColor: '#fff',
     flexDirection: 'row',
