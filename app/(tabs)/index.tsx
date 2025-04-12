@@ -17,10 +17,6 @@ const placeholderImage = require('@/assets/images/background-image.png')
 export default function Index() {
   const [status, requestPermission] = MediaLibrary.usePermissions()
 
-  if (status === null) {
-    requestPermission()
-  }
-
   const imageRef = useRef<View>(null)
 
   const [selectedImage, setSelectedImage] = useState<string | undefined>(
@@ -51,6 +47,10 @@ export default function Index() {
   }
 
   const onSaveImageAsync = async () => {
+    if (status === null) {
+      requestPermission()
+    }
+
     try {
       const localUri = await captureRef(imageRef, {
         quality: 1,
