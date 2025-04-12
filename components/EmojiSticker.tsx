@@ -22,12 +22,11 @@ export function EmojiSticker({ imageSize, source }: EmojiStickerProps) {
         scaleImage.value === imageSize ? imageSize * 2 : imageSize
     })
 
-  const translate = useSharedValue({ x: 0, y: 0 })
+  const translateX = useSharedValue(0)
+  const translateY = useSharedValue(0)
   const drag = Gesture.Pan().onChange((event) => {
-    translate.value = {
-      x: event.translationX,
-      y: event.translationY,
-    }
+    translateX.value += event.changeX
+    translateY.value += event.changeY
   })
 
   const imageStyle = useAnimatedStyle(() => {
@@ -40,8 +39,8 @@ export function EmojiSticker({ imageSize, source }: EmojiStickerProps) {
   const containerStyle = useAnimatedStyle(() => {
     return {
       transform: [
-        { translateX: translate.value.x },
-        { translateY: translate.value.y },
+        { translateX: translateX.value },
+        { translateY: translateY.value },
       ],
     }
   })
