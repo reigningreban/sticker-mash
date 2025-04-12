@@ -1,6 +1,5 @@
 import { Button } from '@/components/Button'
 import { EmojiPicker } from '@/components/EmojiPicker'
-import { EmojiSticker } from '@/components/EmojiSticker'
 import ImageOptions from '@/components/ImageOptions'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { ImageSource } from 'expo-image'
@@ -9,8 +8,8 @@ import * as MediaLibrary from 'expo-media-library'
 import { useRef, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { ImageViewer } from '../../components/ImageViewer'
 import { captureRef } from 'react-native-view-shot'
+import { ImageViewer } from '../../components/ImageViewer'
 
 const placeholderImage = require('@/assets/images/background-image.png')
 
@@ -81,10 +80,7 @@ export default function Index() {
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageWrapper}>
         <View ref={imageRef} collapsable={false}>
-          <ImageViewer source={imageToDisplay} />
-          {selectedEmoji && (
-            <EmojiSticker source={selectedEmoji} imageSize={40} />
-          )}
+          <ImageViewer source={imageToDisplay} selectedEmoji={selectedEmoji} />
         </View>
       </View>
       {selectedImage ? (
