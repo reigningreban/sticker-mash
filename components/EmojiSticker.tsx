@@ -25,6 +25,7 @@ export function EmojiSticker({ imageSize, source }: EmojiStickerProps) {
   const translateX = useSharedValue(0)
   const translateY = useSharedValue(0)
   const drag = Gesture.Pan().onChange((event) => {
+    // TODO: Limit movement to bounds of parent
     translateX.value += event.changeX
     translateY.value += event.changeY
   })
@@ -47,7 +48,9 @@ export function EmojiSticker({ imageSize, source }: EmojiStickerProps) {
 
   return (
     <GestureDetector gesture={drag}>
-      <Animated.View style={[containerStyle, { top: -350 }]}>
+      <Animated.View
+        style={[containerStyle, { position: 'relative', top: 0, left: 0 }]}
+      >
         <GestureDetector gesture={doubleTap}>
           <Animated.Image
             source={source}
