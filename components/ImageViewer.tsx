@@ -1,6 +1,7 @@
 import { Image, type ImageSource } from 'expo-image'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { EmojiSticker } from './EmojiSticker'
+import { useRef } from 'react'
 
 export interface ImageViewerProps {
   source: ImageSource
@@ -8,10 +9,19 @@ export interface ImageViewerProps {
 }
 
 export function ImageViewer({ source, selectedEmoji }: ImageViewerProps) {
+  const imageRef = useRef<View>(null)
   return (
     <>
-      <Image source={source} style={styles.image} />
-      {selectedEmoji && <EmojiSticker source={selectedEmoji} imageSize={40} />}
+      <View ref={imageRef}>
+        <Image source={source} style={styles.image} />
+      </View>
+      {selectedEmoji && (
+        <EmojiSticker
+          source={selectedEmoji}
+          imageSize={40}
+          imageRef={imageRef}
+        />
+      )}
     </>
   )
 }
