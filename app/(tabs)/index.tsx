@@ -6,17 +6,18 @@ import { ImageSource } from 'expo-image'
 import { launchImageLibraryAsync } from 'expo-image-picker'
 import * as MediaLibrary from 'expo-media-library'
 import { useRef, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { captureRef } from 'react-native-view-shot'
 import { ImageViewer } from '../../components/ImageViewer'
+import domtoimage from 'dom-to-image'
 
 const placeholderImage = require('@/assets/images/background-image.png')
 
 export default function Index() {
   const [status, requestPermission] = MediaLibrary.usePermissions()
 
-  const imageRef = useRef<View>(null)
+  const imageRef = useRef(null)
 
   const [selectedImage, setSelectedImage] = useState<string | undefined>(
     undefined
@@ -50,17 +51,36 @@ export default function Index() {
       requestPermission()
     }
 
-    try {
-      const localUri = await captureRef(imageRef, {
-        quality: 1,
-      })
+    if (!(Platform.OS === 'web')) {
+      try {
+        const localUri = await captureRef(imageRef, {
+          quality: 1,
+        })
 
-      if (localUri) {
-        await MediaLibrary.saveToLibraryAsync(localUri)
-        alert('Image saved to gallery!')
+        if (localUri) {
+          await MediaLibrary.saveToLibraryAsync(localUri)
+          alert('Image saved to gallery!')
+        }
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
+    } else {
+      try {
+        if (!imageRef.current) return
+
+        const dataUrl = await domtoimage.toJpeg(imageRef.current, {
+          quality: 1,
+          width: 320,
+          height: 440,
+        })
+
+        let link = document.createElement('a')
+        link.download = 'sticker-smash.jpeg'
+        link.href = dataUrl
+        link.click()
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
