@@ -94,7 +94,9 @@ export default function Index() {
   }
 
   const imageToDisplay = selectedImage
-    ? { uri: selectedImage }
+    ? Platform.OS === 'web'
+      ? selectedImage
+      : { uri: selectedImage }
     : placeholderImage
   return (
     <GestureHandlerRootView style={styles.container}>
