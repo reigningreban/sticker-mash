@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import { Modal, ModalBaseProps, StyleSheet, View, Text } from 'react-native'
 import { IconButton } from './IconButton'
-import { commonStyles } from '@/styles/common-styles'
+import { colors, commonStyles } from '@/styles/common-styles'
 
 export interface ModalProps extends PropsWithChildren, ModalBaseProps {
   isVisible: boolean
@@ -40,17 +40,18 @@ function ModalWrapper({
 export { ModalWrapper as Modal }
 
 const styles = StyleSheet.create({
+  modal: { margin: 0 },
   container: {
     height: '25%',
     width: '100%',
-    backgroundColor: '#25292e',
+    backgroundColor: colors.secondary,
     position: 'absolute',
     bottom: 0,
     borderTopLeftRadius: 18,
     borderTopRightRadius: 18,
   },
   titleBar: {
-    backgroundColor: '#464C55',
+    backgroundColor: colors.tertiary,
     borderTopLeftRadius: 18,
     borderTopRightRadius: 18,
   },
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   titleText: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 16,
     fontWeight: '700',
   },

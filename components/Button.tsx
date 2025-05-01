@@ -1,3 +1,4 @@
+import { colors } from '@/styles/common-styles'
 import { PropsWithChildren } from 'react'
 import { Pressable, StyleSheet, Text, type PressableProps } from 'react-native'
 
@@ -42,7 +43,7 @@ const componentStyles = StyleSheet.create({
     borderRadius: 10,
   },
   label: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 16,
   },
 })

@@ -1,7 +1,9 @@
 import { Button } from '@/components/Button'
 import { EmojiPicker } from '@/components/EmojiPicker'
 import ImageOptions from '@/components/ImageOptions'
+import { colors } from '@/styles/common-styles'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
+import domtoimage from 'dom-to-image'
 import { ImageSource } from 'expo-image'
 import { launchImageLibraryAsync } from 'expo-image-picker'
 import * as MediaLibrary from 'expo-media-library'
@@ -10,7 +12,6 @@ import { Platform, StyleSheet, Text, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { captureRef } from 'react-native-view-shot'
 import { ImageViewer } from '../../components/ImageViewer'
-import domtoimage from 'dom-to-image'
 
 const placeholderImage = require('@/assets/images/background-image.png')
 
@@ -118,7 +119,7 @@ export default function Index() {
               <FontAwesome
                 name="picture-o"
                 size={18}
-                color={'#25292e'}
+                color={colors.secondary}
                 style={styles.chooseIcon}
               />
               <Text style={styles.chooseLabel}>Choose a Photo</Text>
@@ -142,7 +143,7 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#25292e',
+    backgroundColor: colors.secondary,
     flex: 1,
     alignItems: 'center',
   },
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
   },
   chooseLabel: {
-    color: '#25292e',
+    color: colors.secondary,
     fontSize: 16,
   },
   chooseIcon: {

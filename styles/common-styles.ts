@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native'
 
 export const colors = {
   primary: '#ffd33d',
-  secondary: '#25292e',
+  secondary: '#1c274c',
+  tertiary: '#2C8C99',
   white: '#fff',
   black: '#000',
 }
@@ -19,7 +20,7 @@ export const commonStyles = StyleSheet.create({
     alignItems: 'center',
   },
   background: {
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primary,
     color: colors.white,
   },
 })

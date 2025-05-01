@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { colors } from '@/styles/common-styles'
 
 interface TabBarIconProps {
   focused: boolean
@@ -10,12 +11,12 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#ffd33d',
-        headerStyle: { backgroundColor: '#25292e' },
+        tabBarActiveTintColor: colors.primary,
+        headerStyle: { backgroundColor: colors.secondary },
         headerShadowVisible: true,
-        headerTintColor: '#fff',
+        headerTintColor: colors.white,
         tabBarStyle: {
-          backgroundColor: '#25292e',
+          backgroundColor: colors.secondary,
         },
       }}
     >

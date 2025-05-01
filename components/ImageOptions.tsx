@@ -1,4 +1,4 @@
-import { commonStyles } from '@/styles/common-styles'
+import { colors, commonStyles } from '@/styles/common-styles'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { IconButton } from './IconButton'
@@ -21,7 +21,7 @@ export default function ImageOptions({
         icon="add"
         iconSize={38}
         wrapperStyle={styles.addButton}
-        color="#25292e"
+        color={colors.secondary}
         onPress={onAddSticker}
       />
       <IconButton icon="save-alt" text="Save" onPress={onSave} />
@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   addButton: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     padding: 10,
     borderRadius: '100%',
-    borderColor: '#ffd33d',
+    borderColor: colors.primary,
     borderWidth: 4,
   },
 })

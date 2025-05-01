@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, ButtonProps } from './Button'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { StyleSheet, Text } from 'react-native'
+import { colors } from '@/styles/common-styles'
 
 export type IconButtonProps = ButtonProps & {
   icon: keyof typeof MaterialIcons.glyphMap
@@ -25,7 +26,7 @@ export function IconButton({
       <MaterialIcons
         name={icon}
         size={iconSize || 24}
-        color={color || '#fff'}
+        color={color || colors.white}
       />
       {text && (
         <Text style={[styles.text, color && { color: color }]}>{text}</Text>
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   text: {
-    color: '#fff',
+    color: colors.white,
     fontWeight: 'bold',
   },
 })
