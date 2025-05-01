@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react'
-import { Modal, ModalBaseProps, StyleSheet, View, Text } from 'react-native'
+import { ModalBaseProps, StyleSheet, View, Text } from 'react-native'
+import Modal from 'react-native-modal'
 import { IconButton } from './IconButton'
 import { colors, commonStyles } from '@/styles/common-styles'
 
@@ -9,20 +10,10 @@ export interface ModalProps extends PropsWithChildren, ModalBaseProps {
   title: string
 }
 
-function ModalWrapper({
-  children,
-  transparent = true,
-  onClose,
-  isVisible,
-  title,
-}: ModalProps) {
+function ModalWrapper({ children, onClose, isVisible, title }: ModalProps) {
   return (
     <View>
-      <Modal
-        animationType="slide"
-        transparent={transparent}
-        visible={isVisible}
-      >
+      <Modal coverScreen isVisible={isVisible} style={styles.modal}>
         <View style={styles.container}>
           <View style={styles.titleBar}>
             <View style={[commonStyles.container, styles.titleContainer]}>
